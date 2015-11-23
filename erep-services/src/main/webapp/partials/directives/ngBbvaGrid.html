@@ -1,0 +1,19 @@
+<div class="{{class}}">
+    {{className}}
+    <h1 class="bbva-widget-section-title ng-binding">
+        <i class="fa fa-table fah3 glyphicon-big"></i>
+        {{name}}
+        <span class="pull-right">
+            <a href="" title="collapsing widget" ng-show="!isTableCollapsed" ng-click="isTableCollapsed = !isTableCollapsed" class="">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+            <a href="" title="expand widget" ng-show="isTableCollapsed" ng-click="isTableCollapsed = !isTableCollapsed" class="ng-hide">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </span>
+    </h1>
+    <hr>
+    <div collapse="isTableCollapsed">
+        <div ui-grid="options" class="grid" ui-grid-auto-resize ui-grid-pinning ui-grid-resize-columns ui-grid-grouping ui-grid-move-columns></div>
+    </div>
+</div>

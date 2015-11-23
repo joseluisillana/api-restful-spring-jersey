@@ -1,0 +1,123 @@
+<div class="bbva-widget-content">
+
+    <!-- TIME SELECTION -->
+    <div class="col-md-12">
+        <ng-bbva-time-selection></ng-bbva-time-selection>
+    </div>
+
+    <div class="loadingEle fadeAnim" ng-show="isLoading">
+        <!-- <i class="fa fa-spinner fa-pulse"></i> -->
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+
+    <div class="noData" ng-show="!claimsData.month && !isLoading">
+        <i class="fa fa-exclamation-circle"></i>
+        No Hay Datos
+    </div>
+
+    <div ng-show="claimsData.month  && !isLoading">
+        <!-- WIDGET CHARTS -->
+        <div class="bbva-widget-content fadeAnim" ng-show="reportModeView=='C'">
+
+            <!-- CLAIMS INFO DATA PROCESS -->
+            <div class="col-md-12">
+                <h1 class="bbva-widget-section-title ng-binding">
+                    <i class="fa fa-cogs fah3 glyphicon-big"></i>
+                      Proceso
+                      <span class="pull-right">
+                        <a href="" title="collapsing widget" ng-show="!isProcessInfoCollapsed" ng-click="isProcessInfoCollapsed = !isProcessInfoCollapsed" class="">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a href="" title="expand widget" ng-show="isProcessInfoCollapsed" ng-click="isProcessInfoCollapsed = !isProcessInfoCollapsed" class="ng-hide">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                      </span>
+                </h1>
+                <hr>
+                <div collapse="isProcessInfoCollapsed">
+
+                    <!-- CLAIMS NEWS -->
+                    <div class="col-md-4">
+                        <ng-bbva-dashboard-counter  label="Reclamaciones Nuevas" type="CLAIMS_NEW" data="claimsData"></ng-bbva-dashboard-counter>
+                    </div>
+
+                    <!-- CLAIMS IN PROCESS -->
+                    <div class="col-md-4">
+                        <ng-bbva-dashboard-counter  label="Reclamaciones En Proceso" type="CLAIMS_IN_PROCES" data="claimsData"></ng-bbva-dashboard-counter>
+                    </div>
+
+                    <!-- CLAIMS CLOSED -->
+                    <div class="col-md-4">
+                        <ng-bbva-dashboard-counter  label="Reclamaciones Cerradas" type="CLAIMS_CLOSED" data="claimsData"></ng-bbva-dashboard-counter>
+                    </div>
+
+                    <!-- BY TIME LEVELS -->
+                    <div class="col-md-6">
+                        <div class="blueBox">
+                            <div class="blueBoxLbl"><i class="fa fa-bar-chart"></i>Reclamaciones Por Niveles ANS</div>
+                            <div id="{{timeLevelsProcessChartElement}}">
+                                <svg id="{{timeLevelsProcessChartSGV}}" style="height:{{timeLevelsProcessChartHeight}}px;"></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ANS EVOLUTION -->
+                    <div class="col-md-6">
+                        <div class="blueBox">
+                            <div class="blueBoxLbl"><i class="fa fa-line-chart"></i>Evolución ANS</div>
+                            <div id="{{ansEvolutionChartElement}}">
+                                <svg id="{{ansEvolutionChartSGV}}" style="height:{{ansEvolutionChartHeight}}px;"></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BY TASKS INSTANCES -->
+                    <div class="col-md-12">
+                        <div class="blueBox">
+                            <div class="blueBoxLbl"><i class="fa fa-bar-chart"></i>Numero de Tareas</div>
+                            <div id="{{tasksProcessChartElement}}">
+                                <svg id="{{tasksProcessChartSGV}}" style="height:{{tasksProcessChartHeight}}px;"></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROCESS DIAGRAM -->
+            <div class="col-md-12">
+                <ng-bbva-process-graph process="processDefinition"></ng-bbva-process-graph>
+            </div>
+
+            <!-- TASK INFO -->
+            <div class="col-md-12" ng-show="modeView=='T'">
+                <ng-bbva-task task="taskSelected" data="claimsData"></ng-bbva-task>
+            </div>
+
+            <!-- PHASE INFO -->
+            <div class="col-md-12" ng-show="modeView=='P'">
+                <ng-bbva-phase phase="phaseSelected" data="claimsData"></ng-bbva-phase>
+            </div>
+
+        </div>
+
+        <!-- WIDGET DATA TABLES  -->
+        <div class="bbva-widget-content fadeAnim" ng-show="reportModeView=='T'">
+
+            <ng-bbva-grid name="Tabla de Proceso" class="col-md-12" options="processGridOpts"></ng-bbva-grid>
+
+            <!-- CLAIMS PHASES DATATABLE -->
+            <ng-bbva-grid name="Tabla de Fases" class="col-md-12" options="phasesGridOpts"></ng-bbva-grid>
+
+            <!-- CLAIMS TASKS DATATABLE -->
+            <ng-bbva-grid name="Tabla de Tareas" class="col-md-12" options="taskGridOpts"></ng-bbva-grid>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Button Bottom Bar -->
+<div class="col-md-12 buttonBottomBar background-bbva">
+</div>
+

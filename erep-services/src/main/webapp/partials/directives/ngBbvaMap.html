@@ -1,0 +1,88 @@
+
+<div id="{{olMapContainerId}}" class="bbvaMap {{isFullScreen? 'bbvaMapFullScreen':''}}">
+
+    <div class="bbvaMapFST" ng-show="isFullScreenAvaible">
+        <h2 class="bbva-widget-title">
+            <i class="fa fa-globe"></i>&nbsp;Mapa
+        </h2>
+    </div>
+
+    <div class="mapBtnGroup mapBtnGroupTop mapBtnGroupLeft">
+        <div class="btn-group">
+            <button type="button" class="btn btn-bbva btn-bbva-small btn-bbva-yellow" ng-click="zoomIn()"><i class="fa fa-search-plus"></i></button>
+            <button type="button" class="btn btn-bbva btn-bbva-small btn-bbva-yellow" ng-click="zoomOut()"><i class="fa fa-search-minus"></i></button>
+        </div>
+    </div>
+
+    <div class="mapBtnGroup mapBtnGroupTop mapBtnGroupRight">
+        <button type="button" ng-click="toogleFullScreen()" ng-show="isFullScreenAvaible && !isFullScreen"
+                class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+            <i class="fa fa-expand"></i>
+        </button>
+
+        <button type="button" ng-click="toogleFullScreen()" ng-show="isFullScreenAvaible && isFullScreen"
+                class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+            <i class="fa fa-compress"></i>
+        </button>
+
+    </div>
+
+    <div class="mapBtnGroup mapBtnGroupBottom mapBtnGroupLeft">
+
+        <!-- Tiles Layer -->
+        <div class="mapBtnDropup dropup" ng-show="options.tileLayers && options.tileLayers.length > 0">
+            <button type="button" title="enable edit mode" data-toggle="dropdown"
+                    class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+                <i class="fa fa-map"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-yellow" role="menu">
+                <li ng-repeat="tileLayer in olTileLayers" ng-click="toogleTileLayer(tileLayer)">
+                    <a x-ng-class="tileLayer.getVisible()? 'textLight':''">
+                        <i class="fa fa-check-circle-o" ng-show="tileLayer.getVisible()"></i>
+                        <i class="fa fa-circle-o" ng-show="!tileLayer.getVisible()"></i>
+                        {{tileLayer.get('name')}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Layers -->
+        <div class="mapBtnDropup dropup">
+            <button type="button" title="enable edit mode"  data-toggle="dropdown" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+                <i class="fa fi-layers"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-yellow dropdown-menu-left" role="menu">
+
+                <!-- Features Layer -->
+                <li ng-repeat="(key,featureLayer) in olFeatureLayers" ng-click="featureLayer.setVisible(!featureLayer.getVisible())">
+                    <a x-ng-class="featureLayer.getVisible()? 'textLight':''">
+                        <i class="fa fa-check-circle-o" ng-show="featureLayer.getVisible()"></i>
+                        <i class="fa fa-circle-o" ng-show="!featureLayer.getVisible()"></i>
+                        {{featureLayer.get('name')}}
+                    </a>
+                </li>
+
+                <!-- Overlays Layer -->
+                <li ng-repeat="(key,overlayLayer) in overlaysLayers" ng-click="toogleOverlayLayerVisibility(overlayLayer)">
+                    <a x-ng-class="overlayLayer.visible? 'textLight':''">
+                        <i class="fa fa-check-circle-o" ng-show="overlayLayer.visible"></i>
+                        <i class="fa fa-circle-o" ng-show="!overlayLayer.visible"></i>
+                        {{overlayLayer.name}}
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="mapBtnGroup mapBtnGroupBottom mapBtnGroupRight">
+        <button type="button" title="enable edit mode" class="btn btn-bbva btn-bbva-small btn-bbva-yellow"
+                ng-click="photoMap()">
+            <i class="fa fa-camera"></i>
+        </button>
+        <a id="exportMap{{olMapContainerId}}" download="map.png"></a>
+    </div>
+</div>
+
+<div id='mouse-position'></div>
+

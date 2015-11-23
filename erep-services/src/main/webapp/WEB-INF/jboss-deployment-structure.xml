@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<deployment>
+
+		<exclude-subsystems>
+			<subsystem name="jaxrs" />
+			<subsystem name="resteasy" />
+			<subsystem name="logging" />
+		</exclude-subsystems>
+
+		<exclusions>
+			<module name="javaee.api" />
+			<module name="org.jboss.as.jaxrs" />
+			<module name="javax.ws.rs.api" />
+			<module name="org.jboss.resteasy.resteasy-jaxrs" />
+			<module name="org.apache.commons.logging" />
+			<module name="org.apache.log4j" />
+			<module name="org.jboss.logging" />
+			<module name="org.jboss.logging.jul-to-slf4j-stub" />
+			<module name="org.jboss.logmanager" />
+			<module name="org.jboss.logmanager.log4j" />
+			<module name="org.slf4j" />
+			<module name="org.slf4j.impl" />
+			<module name="ch.qos.logback" />
+			<module name="org.jboss.as.jaxrs" />
+			<module name="org.jboss.resteasy.resteasy-jaxrs" />
+			<module name="org.jboss.resteasy.resteasy-cdi" />
+			<module name="org.jboss.resteasy.jackson-provider" />
+			<module name="org.jboss.resteasy.resteasy-atom-provider" />
+			<module name="org.jboss.resteasy.resteasy-hibernatevalidator-provider" />
+			<module name="org.jboss.resteasy.resteasy-jaxb-provider" />
+			<module name="org.jboss.resteasy.resteasy-jettison-provider" />
+			<module name="org.jboss.resteasy.resteasy-jsapi" />
+			<module name="org.jboss.resteasy.resteasy-multipart-provider" />
+			<module name="org.jboss.resteasy.resteasy-yaml-provider" />
+			<module name="org.codehaus.jackson.jackson-core-asl" />
+			<module name="org.codehaus.jackson.jackson-jaxrs" />
+			<module name="org.codehaus.jackson.jackson-mapper-asl" />
+			<module name="org.codehaus.jackson.jackson-xc" />
+			<module name="org.codehaus.jettison" />
+		</exclusions>
+
+		<dependencies>
+			<module name="javax.api" export="true" />
+			<module name="javax.annotation.api" export="true" />
+			<module name="javax.xml.stream.api" export="true" />
+			<module name="javax.ejb.api" export="true" />
+			<module name="javax.jws.api" export="true" />
+			<module name="javax.servlet.api" export="true" />
+			<module name="javax.wsdl4j.api" export="true" />
+			<module name="javax.xml.ws.api" export="true" />
+		</dependencies>
+
+	</deployment>
+</jboss-deployment-structure>

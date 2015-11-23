@@ -1,0 +1,53 @@
+/**** BBVA WEB FONTS ****/
+@font-face{
+    font-family: 'BBVA Web Book';
+    src: url('../fonts/bbvaweb-book.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/bbvaweb-book.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/bbvaweb-book.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/bbvaweb-book.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/bbvaweb-book.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face{
+    font-family: 'BBVA Web Light';
+    src: url('../fonts/bbvaweb-light.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/bbvaweb-light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/bbvaweb-light.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/bbvaweb-light.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/bbvaweb-light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face{
+    font-family: 'BBVA Web Medium';
+    src: url('../fonts/bbvaweb-medium.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/bbvaweb-medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/bbvaweb-medium.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../fonts/bbvaweb-medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/bbvaweb-medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+/* FONTS FLAT ICONS */
+@font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/flaticon.eot");
+    src: url("../fonts/flaticon.eot#iefix") format("embedded-opentype"),
+    url("../fonts/flaticon.woff") format("woff"),
+    url("../fonts/flaticon.ttf") format("truetype"),
+    url("../fonts/flaticon.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="fi-"]:before, [class*=" fi-"]:before,
+[class^="fi-"]:after, [class*=" fi-"]:after {
+    font-family: Flaticon;
+}
+
+.fi-layers:before {
+    content: "\e000";
+ }
+
+
+
+
+

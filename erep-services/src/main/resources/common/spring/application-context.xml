@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+   
+     http://www.springframework.org/schema/data/mongo
+     http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+     
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+     
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Contenedor de propiedades de la aplicación -->
+	<!-- UNIX PATH -->
+ 	<context:property-placeholder 
+ 		location="file:///app/ctcons01/online/cfg/entorno/erep_processes_config.properties,  
+ 		file:///app/ctcons01/online/cfg/entorno/erep1.cfg" 
+		ignore-unresolvable="true" />
+
+	<!-- WINDOWS PATH -->
+<!-- 	<context:property-placeholder location="file:///C:\app\ctcons01\online\cfg\entorno\erep_processes_config.properties,  -->
+<!-- 		file:///C:\app\ctcons01\online\cfg\entorno\erep1.cfg" ignore-unresolvable="true"  -->
+<!-- 		/> <context:component-scan base-package="com.bbva.operationalreportingapi.rest.*"  -->
+<!-- 		/> -->
+
+	<!-- Configuración de Spring Data Mongo -->
+	<import resource="classpath:common/spring/mongo-db-context.xml" />
+
+	<!-- Contenedor de propiedades de la aplicación del classpath-->
+	<!-- <bean -->
+	<!-- class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+	<!-- <property name="ignoreUnresolvablePlaceholders" value="false" /> -->
+	<!-- <property name="location" value="classpath:resources/applicationEnvironment.properties" 
+		/> -->
+	<!-- </bean> -->
+
+  <context:component-scan base-package="com.bbva.operationalreportingapi.rest" />
+  
+	<!-- SERVICIOS -->
+	<bean id="hierarchyService"
+		class="com.bbva.operationalreportingapi.rest.services.HierarchyServiceImpl" />
+	<bean id="operationsByProcessService"
+		class="com.bbva.operationalreportingapi.rest.services.OperationsByProcessServiceImpl" />
+	<bean id="ansComplianceFinishedInstService"
+		class="com.bbva.operationalreportingapi.rest.services.AnsComplianceFinishedInstServiceImpl" />
+	<bean id="ansComplianceClaimsService"
+		class="com.bbva.operationalreportingapi.rest.services.AnsComplianceFinishedInstServiceImpl" />
+	<bean id="complianceProcessDefinitionService"
+		class="com.bbva.operationalreportingapi.rest.services.ComplianceProcessDefinitionServiceImpl" />
+</beans>

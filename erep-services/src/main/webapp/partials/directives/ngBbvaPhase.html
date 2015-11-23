@@ -1,0 +1,85 @@
+<div id="phaseInfoElement" class="fadeAnim" ng-show="phase!=null">
+    <h1 class="bbva-widget-section-title ng-binding">
+        <i class="fa fa-code-fork fah3 glyphicon-big"></i>
+        ANS Fase: {{phase.name}}
+          <span class="pull-right">
+                <a href="" title="collapsing widget" ng-show="!isPhaseInfoCollapsed" ng-click="isPhaseInfoCollapsed = !isPhaseInfoCollapsed" class="">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a href="" title="expand widget" ng-show="isPhaseInfoCollapsed" ng-click="isPhaseInfoCollapsed = !isPhaseInfoCollapsed" class="ng-hide">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+          </span>
+    </h1>
+    <hr>
+    <div collapse="isPhaseInfoCollapsed">
+
+        <div class="col-md-2">
+        </div>
+
+        <!-- PHASE ANS KO -->
+        <div class="col-md-4">
+            <div class="blueBox red">
+                <div class="blueBoxIco">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-thumbs-down fa-stack-1x"></i>
+                    </span>
+                </div>
+                <div class="blueBoxValue">{{ansKOPhaseCounter}}</div>
+                <div class="blueBoxLbl">Fases ANS<br>Incumplido</div>
+                <div class="fadeInOutLoop blueBoxVariation" ng-show="ansKOPhaseVariation!=null">
+                    <i class="fa {{ansKOClaimsVariation && ansKOClaimsVariation > 0? 'fa-arrow-circle-up' : 'fa-arrow-circle-down'}}"></i>
+                    {{ansKOPhaseVariation}}%<br>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE ANS OK -->
+        <div class="col-md-4">
+            <div class="blueBox green">
+                <div class="blueBoxIco">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-o fa-stack-2x"></i>
+                      <i class="fa fa-thumbs-up fa-stack-1x"></i>
+                    </span>
+                </div>
+                <div class="blueBoxValue">{{ansOKPhaseCounter}}</div>
+                <div class="blueBoxLbl">Fases ANS<br>Cumplido</div>
+                <div class="fadeInOutLoop blueBoxVariation" ng-show="ansOKPhaseVariation!=null">
+                    <i class="fa {{ansOKClaimsVariation && ansOKClaimsVariation > 0? 'fa-arrow-circle-up' : 'fa-arrow-circle-down'}}"></i>
+                    {{ansOKPhaseVariation}}%
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+        </div>
+
+        <!-- PHASE TIME LEVELS -->
+        <div class="col-md-6">
+            <div class="blueBox">
+
+                <div class="blueBoxLbl"><i class="fa fa-bar-chart"></i>Niveles ANS</div>
+                <div id="{{phaseTimeLevelsChartElement}}">
+                    <svg id="{{phaseTimeLevelsChartSGV}}" style="height:{{phasesTimeLevelsChartHeight}}px;"></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE ANS EVOLUTION -->
+        <div class="col-md-6">
+            <div class="blueBox">
+                <div class="blueBoxLbl"><i class="fa fa-bar-chart"></i>Evolución ANS Tarea</div>
+                <div id="{{phaseAnsEvolutionChartElement}}">
+                    <svg id="{{phaseAnsEvolutionChartSGV}}" style="height:{{phaseAnsEvolutionChartHeight}}px;"></svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

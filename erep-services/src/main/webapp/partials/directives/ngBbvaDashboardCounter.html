@@ -1,0 +1,14 @@
+<div class="blueBox">
+    <div class="blueBoxValue"></div>
+    <div class="blueBoxLbl">
+        <span class="blueBoxValue">{{counterValue}}</span>
+        <span>{{label}}</span>
+    </div>
+    <div class="fadeInOutLoop blueBoxVariation" ng-show="counterVariation!=null">
+        <i class="fa {{counterVariation && counterVariation > 0? 'fa-arrow-circle-up' : 'fa-arrow-circle-down'}}"></i>
+        {{counterVariation}}%
+    </div>
+    <div id="{{counterChartElement}}">
+        <svg id="{{counterChartElementSVG}}" style="height:{{$scope.counterChartHeight}}px"></svg>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-header bbva-modal-nav bbva-modal-header">
+  <a href="" title="close" ng-click="close()" class="closeModal">
+    <i class="fa fa-close"></i>
+  </a>
+  <h4 class="modal-title bbva-modal-title"><i class="fa fa-star-o fa-lg"></i>&nbsp;&nbsp;Nuevo Dashboard</h4>
+</div>
+
+<div class="modal-body">
+  <div class="form-group">
+    <label>Nombre</label>
+    <input type="text" class="form-control" id="dashboardTitle" ng-model="pageName" required="">
+  </div>
+</div>
+
+<div class="modal-footer bbva-modal-footer bbva-modal-nav">
+
+  <button type="button" class="btn btn-bbva" ng-click="close()">
+    <i class="fa glyphicon-big fa-close"></i>
+    Cancelar
+  </button>
+
+  <button type="button" class="btn btn-bbva" ng-click="addPage(pageName)">
+    <i class="fa glyphicon-big fa-check"></i>
+    Guardar
+  </button>
+
+</div>
+

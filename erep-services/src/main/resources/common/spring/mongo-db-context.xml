@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+	<!-- Registro de la instancia de Mongo -->
+	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+		<property name="host" value="${mongo.BMG_DELIVERY.host.ip}" />
+		<property name="port" value="${mongo.BMG_DELIVERY.host.port}" />
+	</bean>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<property name="writeResultChecking">
+      <util:constant static-field="org.springframework.data.mongodb.core.WriteResultChecking.${mongo.BMG_DELIVERY.writeResultChecking}" />
+    </property>
+		<property name="writeConcern">
+			<util:constant static-field="com.mongodb.WriteConcern.${mongo.BMG_DELIVERY.writeConcern}" />
+		</property>
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="${mongo.BMG_DELIVERY.databaseName}" />
+
+ 		<constructor-arg name="userCredentials" ref="userCredentials" />
+	</bean>
+
+	<bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+		<constructor-arg name="username" value="${mongo.BMG_DELIVERY.EREP.username}" />
+		<constructor-arg name="password" value="${mongo.BMG_DELIVERY.EREP.password}" />
+	</bean>
+
+</beans>

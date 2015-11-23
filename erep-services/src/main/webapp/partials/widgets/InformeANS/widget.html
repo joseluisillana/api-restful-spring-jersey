@@ -1,0 +1,214 @@
+
+<div class="bbva-widget-content">
+
+    <div class="col-md-3 bbva-widget-content-column bbva-widget-filter" ng-hide="(config && config.masterFilter) || (config.hasFilter && !config.isFilterVisible)">
+
+        <div class="bbva-widget-section">
+            <h3 class="bbva-widget-section-title ng-binding" ng-click="isFilterChartCollapsed = !isFilterChartCollapsed">
+                <i class="fa fa-sitemap glyphicon-big"></i>
+                Familias de Procesos
+                  <span class="pull-right">
+                    <a href="" title="collapsing widget" ng-show="!isFilterChartCollapsed" class="">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a href="" title="expand widget" ng-show="isFilterChartCollapsed" ng-click="isFilterChartCollapsed = !isFilterChartCollapsed" class="ng-hide">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                  </span>
+            </h3>
+            <hr>
+            <div collapse="isFilterChartCollapsed">
+
+                <!-- Family -->
+                <div class="form-group">
+                    <label>Familia</label>
+                    <select ng-model="filter.idSelectedFamily" ng-options="obj.family as obj.family for obj in families"  class="form-control">
+                    </select>
+                </div>
+
+                <!-- SubFamily -->
+                <div class="form-group">
+                    <label>SubFamilia</label>
+                    <select ng-model="filter.idSelectedSubFamily" ng-options="obj.subfamily as obj.subfamily for obj in subfamilies"
+                            ng-disabled="filter.idSelectedFamily==null" class="form-control"></select>
+                </div>
+
+                <!-- Process -->
+                <div class="form-group">
+                    <label>Proceso</label>
+                    <select ng-model="filter.idSelectedProcess" ng-options="obj.process as obj.process for obj in processes"
+                            ng-disabled="filter.idSelectedSubFamily==null" class="form-control"></select>
+                </div>
+
+                <!-- Operation Type -->
+                <div class="form-group">
+                    <label>Tipo Operación</label>
+                    <select ng-model="filter.idSelectedOperationType" ng-options="o as o for o in typeOperations"
+                            ng-disabled="filter.idSelectedProcess==null" class="form-control"></select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bbva-widget-section">
+            <h3 class="bbva-widget-section-title ng-binding">
+                <i class="fa fa-clock-o glyphicon-big"></i>
+                Intervalo de Tiempo
+                  <span class="pull-right">
+                    <a href="" title="collapsing widget" ng-show="!isCollapsed" ng-click="isCollapsed = !isCollapsed" class="">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a href="" title="expand widget" ng-show="isCollapsed" ng-click="isCollapsed = !isCollapsed" class="ng-hide">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                  </span>
+            </h3>
+            <hr>
+            <div collapse="isCollapsed" class="width">
+                <!-- Day Filter Mode-->
+                <!-- Start Date -->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Día de inicio..."
+                                       data-ng-model="startDateText"  >
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+                            <datetimepicker data-ng-model="filter.startDate"
+                                            data-on-set-time='onStartDateSet()'
+                                            data-datetimepicker-config="dayDatePickerOptions"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- End Date  -->
+                <div class="form-group">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" id="dropdownEndDate" role="button" data-toggle="dropdown">
+                            <div class="input-group">
+                                <input type="text" class="form-control"  placeholder="Día de fin..." data-ng-model="endDateText">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="filter.endDate"
+                                            data-on-set-time='onEndDateSet()'
+                                            data-datetimepicker-config="dayDatePickerOptions"></datetimepicker>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="bbva-widget-section">
+            <h3 class="bbva-widget-section-title ng-binding">
+                <i class="fa fa-sliders glyphicon-big"></i>
+                Preferencias
+                <span class="pull-right">
+                    <a href="" title="collapsing widget" ng-click="toogleConfiguration()"  class="">
+                        <i class="fa fa-check fa-lg {{config.userConfig? 'hasSelecion':'noSelection'}} "></i>
+                    </a>
+                </span>
+            </h3>
+            <hr>
+            <!-- Boton -->
+            <div class="form-group">
+                <button type="button" class="btn btn-bbva btn-bbva-yellow btn-flex" ng-click="generateCharts()">
+                    <i class="fa glyphicon-big fa-bar-chart"></i>
+                    Generar Informe
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NVD3 CHARTS  -->
+    <div  class="{{(config && config.masterFilter) || (config.hasFilter && !config.isFilterVisible)? 'col-md-12':'col-md-9'}} bbva-widget-content-column Lateral-padding-0">
+
+        <!-- Filter Icon -->
+        <div class="bbva-widget-filter-btn" ng-show="config && !config.masterFilter">
+            <a href="" title="colapse filters"  ng-click="toogleFilter()">
+                <i class="fa {{config.isFilterVisible? 'fa-chevron-circle-left':'fa-chevron-circle-right'}}"></i>
+            </a>
+        </div>
+
+        <!-- Multibar Evolution Chart-->
+        <div class="col-md-12">
+            <h3 class="bbva-widget-section-title ng-binding">
+                <span class="fa fa-bar-chart glyphicon-big" aria-hidden="true"></span>
+                Cumplimiento ANS del Proceso:
+                <span class="font-bold font-light-blue">{{selectedElementName}}</span>
+                <span class="pull-right">
+                    <a href="" title="collapse widget" ng-show="!isMultiBarCollapsed" ng-click="isMultiBarCollapsed = !isMultiBarCollapsed" class="">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a href="" title="expand widget" ng-show="isMultiBarCollapsed" ng-click="isMultiBarCollapsed = !isMultiBarCollapsed" class="ng-hide">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                </span>
+            </h3>
+            <hr>
+            <div class="col-md-12" collapse="isMultiBarCollapsed">
+                <!--SVG Chart -->
+                <div id="{{multibarChartElement}}">
+                    <svg id="{{multibarChartSVG}}" style="height: 200px;"></svg>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Line Evolution Chart-->
+        <div class="col-md-12">
+            <h3 class="bbva-widget-section-title ng-binding">
+                <i class="fa fa-line-chart glyphicon-big"></i>
+                Evolución Cumplimiento ANS del Tipo Operacion:
+                <span class="font-bold font-light-blue">{{selectedTypeOperation}}</span>
+                <span class="pull-right">
+                    <a href="" title="collapse widget" ng-show="!isLineCollapsed" ng-click="isLineCollapsed = !isLineCollapsed" class="">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a href="" title="expand widget" ng-show="isLineCollapsed" ng-click="isLineCollapsed = !isLineCollapsed" class="ng-hide">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                </span>
+            </h3>
+            <hr>
+            <div class="col-md-12" collapse="isLineCollapsed">
+                <!--SVG Chart -->
+                <div id="{{lineChartElement}}" class='with-3d-shadow with-transitions'>
+                    <svg id="{{lineChartSVG}}"  style="height: 250px;"></svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Button Bottom Bar -->
+    <div class="col-md-12 bbva-modal-footer bbva-modal-nav background-bbva">
+        <button type="button" class="btn btn-bbva" ng-click="exportPDF()">
+            <i class="fa glyphicon-big fa-download"></i>
+            PDF
+        </button>
+        <button type="button" class="btn btn-bbva" ng-click="exportCSV()">
+            <i class="fa glyphicon-big fa-download"></i>
+            Excel
+        </button>
+    </div>
+
+</div>
+
+
+
+<!-- Angular Templates -->
+<script type="text/ng-template" id="BBVAModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Aviso</h3>
+    </div>
+    <div class="modal-body">
+      {{message}}
+    </div>
+</script>

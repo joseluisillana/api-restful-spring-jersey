@@ -1,0 +1,57 @@
+<h1 class="bbva-widget-section-title ng-binding">
+    <i class="fa fa-code-fork fah3 glyphicon-big"></i>
+    Fases y Tareas
+                  <span class="pull-right">
+                    <a href="" title="collapsing widget" ng-show="!isProcDiagraMCollapsed" ng-click="isProcDiagraMCollapsed = !isProcDiagraMCollapsed" class="">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a href="" title="expand widget" ng-show="isProcDiagraMCollapsed" ng-click="isProcDiagraMCollapsed = !isProcDiagraMCollapsed" class="ng-hide">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                  </span>
+</h1>
+<hr>
+<div collapse="isProcDiagraMCollapsed">
+
+    <div id="processGraph{{processGraphUID}}" class="processGraph">
+
+        <div ng-repeat="task in process.tasks" id="process-task-{{task.id}}"
+             class="shape {{idTaskSelected==task.id? 'process-graph-selected': ''}} {{task.isAns? 'process-graph-task-ans': 'process-graph-task'}} "
+             data-shape="Rectangle" style="{{getTaskPosition(task.id)}}" ng-click="selectTask(task.id)">
+
+            <div class="process-graph-task-name">{{task.name}}</div>
+            <div class="process-graph-task-divider"></div>
+            <div class="process-graph-task-line">
+                <i class="fa fa-clock-o"></i>
+                <div class="process-graph-task-item-lbl">Tiempo Medio</div>
+                <i class="fa fa-chevron-right"></i>{{task.ansData.ansAvgTime?formatAnstimeEvalLong(task.ansData.ansAvgTime, task.humanAnsTimeUnit):'0'}} {{task.timeUnit}}
+            </div>
+            <div class="process-graph-task-line">
+                <i class="fa fa-stack-overflow"></i>
+                <div class="process-graph-task-item-lbl">Número Tareas</div>
+                <i class="fa fa-chevron-right"></i>{{task.ansData.numInstances? task.ansData.numInstances:'0'}}
+            </div>
+            <div class="process-graph-task-line">
+                <i class="fa fa-check"></i>
+                <div class="process-graph-task-item-lbl">Tareas en Tiempo</div>
+                <i class="fa fa-chevron-right"></i>{{task.ansData.instancesAnsOK? task.ansData.instancesAnsOK:'0'}}
+            </div>
+            <div class="process-graph-task-line">
+                <i class="fa fa-exclamation-triangle"></i>
+                <div class="process-graph-task-item-lbl">Tareas con Retraso</div>
+                <i class="fa fa-chevron-right"></i>{{task.ansData.instancesAnsKO? task.ansData.instancesAnsKO:'0'}}
+            </div>
+        </div>
+
+        <div ng-repeat="phase in process.phases" id="processPhase{{phase.id}}" class="">
+            <div ng-repeat="(groupTaskId, groupTask) in process.processGraph.phases[phase.id]"
+                 class="shape process-graph-phase" data-shape="Rectangle" style="{{getPhaseStyle(groupTask)}}"
+                 ng-click="selectPhase(phase.id)">
+                <div class="process-graph-phase-name">{{phase.name}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

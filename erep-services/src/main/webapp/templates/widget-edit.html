@@ -1,0 +1,61 @@
+
+<!-- Header -->
+<div class="modal-header  bbva-modal-nav bbva-modal-header">
+  <a href="" title="close" ng-click="closeDialog()" class="closeModal">
+    <i class="fa fa-close"></i>
+  </a>
+  <h4 class="modal-title bbva-modal-title"><i class="fa fa-wrench fa-lg"></i>&nbsp;&nbsp;{{widget.title}}</h4>
+</div>
+
+<!-- Content -->
+<div class="modal-body">
+
+  <form role="form" class="bbva-widget-section">
+
+    <div class="form-group">
+      <h3>Title</h3>
+      <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title" placeholder="Enter title" required="">
+    </div>
+
+    <div class="form-group" ng-show="config.hasFilter && config.hasFilter==true">
+      <h3 for="dashboardTitle">Filtros de Búsqueda</h3>
+
+      <div class="widgetEditFilterDiv" ng-click="setFilterMode(false)">
+        Filtros Informe
+          <span class="pull-right">
+          <a href="" title="save user preferences" class="">
+            <i class="fa fa-check fa-lg {{config.masterFilter == undefined || !config.masterFilter? 'hasSelecion':'noSelection'}} "></i>
+          </a>
+        </span>
+      </div>
+
+      <div class="widgetEditFilterDiv" ng-click="setFilterMode(true)">
+        Filtro Maestro
+        <span class="pull-right">
+          <a href="" title="save user preferences" class="">
+            <i class="fa fa-check fa-lg {{config.masterFilter? 'hasSelecion':'noSelection'}} "></i>
+          </a>
+        </span>
+      </div>
+
+    </div>
+
+  </form>
+
+
+  <div ng-if="widget.edit">
+    <ng-bbva-widget-content model="definition" content="widget.edit" />
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="modal-footer bbva-modal-footer bbva-modal-nav">
+
+  <button type="button" class="btn btn-bbva" ng-click="closeDialog()">
+    <i class="fa glyphicon-big fa-close"></i>
+    Cancelar
+  </button>
+
+
+</div>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+    <!-- UNIX PATH -->
+    <include file="/app/ctcons01/online/cfg/entorno/erep_processes_log_config.xml" />
+    <!-- WINDOWS PATH -->
+    <!-- <include file="C:\app\ctcons01\online\cfg\entorno\erep_processes_log_config.xml" /> -->
+</configuration>

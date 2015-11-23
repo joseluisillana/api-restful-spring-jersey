@@ -1,0 +1,60 @@
+
+<!-- Widget Content -->
+<div class="bbva-widget-content processMonitor">
+
+    <!-- New Instances Process -->
+    <div class="col-md-6">
+        <h3 class="bbva-widget-section-title ng-binding">
+              <i class="fa fa-cog glyphicon-big"></i>
+              Altas <span class="badge">669966</span></a>
+              <span class="pull-right">
+                <a href="" title="collapsing widget" ng-show="!isCollapsed1" ng-click="isCollapsed1 = !isCollapsed1" class="">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a href="" title="expand widget" ng-show="isCollapsed1" ng-click="isCollapsed1 = !isCollapsed1" class="ng-hide">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+              </span>
+        </h3>
+        <hr>
+        <div collapse="isCollapsed1">
+            <div id="newProcessInstancesContainer" class="processInstances"></div>
+        </div>
+    </div>
+
+
+    <!--  End Instances Process -->
+    <div class="col-md-6">
+        <h2 class="bbva-widget-section-title ng-binding">
+            <i class="fa fa-cog glyphicon-big"></i>
+            Finalizados <span class="badge">336633</span></a>
+            <span class="pull-right">
+                <a href="" title="collapsing widget" ng-show="!isCollapsed2" ng-click="isCollapsed2 = !isCollapsed2" class="">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a href="" title="expand widget" ng-show="isCollapsed2" ng-click="isCollapsed2 = !isCollapsed2" class="ng-hide">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </span>
+        </h2>
+        <hr>
+        <div collapse="isCollapsed2">
+            <div id="endProcessInstancesContainer" class="processInstances"></div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+<!-- Angular Templates -->
+<script type="text/ng-template" id="BBVAModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Informacion</h3>
+    </div>
+    <div class="modal-body">
+        No existen datos para los criterios introducidos
+    </div>
+</script>

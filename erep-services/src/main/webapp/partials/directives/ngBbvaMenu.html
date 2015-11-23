@@ -1,0 +1,96 @@
+<nav class="navbar navbar-inverse navbar-fixed-top background-bbva fadeAnim">
+    <div class="container" ng-controller="ApplicationController">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="toggleNav()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                </button>
+            <a class="navbar-brand" href="#dashboard">
+                <!-- Application Logo --> <img src="{{appConfig.appLogo}}" class="or-logo" ng-show="appConfig.appLogo"/>
+                <!-- Application Name --> {{appConfig.appName && appConfig.appName!=''? appConfig.appName : 'Reporting Operacional'}}
+            </a>
+        </div>
+
+        <div collapse="navCollapsed" class="collapse navbar-collapse" id="bbva-navbar-collapse-0">
+            <ul class="nav navbar-nav">
+
+                <!-- Menus  of User -->
+                <li class="dropdown" ng-repeat="menuGroup in menu" ng-if="menu!=null">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="fa fa-navbar fa-lg {{menuGroup.iconClass}}" aria-hidden="true" ng-if="menuGroup.iconClass!=null"></span>
+                        {{menuGroup.name}} <span class="fa fa-chevron-down fa-navbar" aria-hidden="true"></span>
+                    </a>
+                    <ul class="dropdown-menu background-bbva">
+                        <li ng-repeat="menuItem in menuGroup.items" ng-class="navClass(menuItem.url)">
+                            <a  href="#{{menuItem.url}}">
+                                <span class="fa fa-lg fa-navbar {{menuItem.iconClass}}" aria-hidden="true" ng-if="menuItem.iconClass!=null"></span>
+                                &nbsp;{{menuItem.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- User Pages -->
+                <li class="dropdown">
+
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="fa fa-navbar fa-lg fa-star-o" style="font-weight: bold;" aria-hidden="true">&nbsp;</span>
+                        Mis Dashboards&nbsp;<span class="fa fa-chevron-down fa-navbar" aria-hidden="true"></span>
+                    </a>
+
+                    <ul class="dropdown-menu background-bbva">
+                        <li ng-repeat="userPage in user.userPages"  ng-class="navClass('userDashboard/userPage.id')">
+                            <a  href="#userDashboard/{{userPage.id}}">
+                                <span class="fa fa-lg fa-navbar {{userPage.iconClass}}" aria-hidden="true" ng-if="userPage.iconClass!=null"></span>
+                                {{userPage.title}}
+                                </a>
+                            </li>
+
+                        <li class="divider" ng-if="user.userPages!=null && user.userPages.length>0"></li>
+
+                        <li>
+                            <a href="" ng-click="showAddPage()">
+                                <span class="fa fa-lg fa-navbar fa-plus-circle" aria-hidden="true"></span>
+                                &nbsp;Nuevo Dashboard
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <!-- User Pages -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown" ng-if="user!=null">
+                    <a class="dropdown-toggle userMenuGroup" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="fa fa-user fa-lg"></i>
+                        <span>{{user.name}}</span>
+                        <span class="fa fa-chevron-down fa-navbar" aria-hidden="true">
+                    </a>
+                </li>
+
+                <li ng-if="user!=null"><a>|</a></li>
+                <li class="dropdown navbar-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="fa fa-users fa-lg">&nbsp;</i>Usuarios
+                        <span class="fa fa-chevron-down fa-navbar" aria-hidden="true"></span>&nbsp;&nbsp;
+                        </a>
+                    <ul class="dropdown-menu background-bbva">
+                        <li ng-class="navUser('Default')">
+                            <a  ng-click="selectUser(0)"><i class="fa fa-user"></i> Anónimo - Default</a>
+                            </li>
+                        <li role="presentation" class="divider"></li>
+                        <li ng-class="navUser('Oscar')">
+                            <a  ng-click="selectUser(1)"><i class="fa fa-user"></i> Oscar - Grupo 1</a>
+                            </li>
+                        <li role="presentation" class="divider"></li>
+                        <li ng-class="navUser('Emilio')">
+                            <a  ng-click="selectUser(2)"><i class="fa fa-user"></i> Emilio - Grupo 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

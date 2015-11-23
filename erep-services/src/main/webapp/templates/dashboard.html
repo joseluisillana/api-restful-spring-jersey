@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+  <h1>
+    {{model.title}}
+    <span style="font-size: 16px" class="pull-right" ng-if="model.configurable !== false">
+
+      <button type="button" ng-if="editMode" title="add new report" ng-click="addWidgetDialog()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+        <i class="fa fa-plus-circle"></i>
+      </button>
+
+      <button type="button" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+        <!--<i class="fa fa-columns"></i>-->
+        <i class="fa fa-cog"></i>
+      </button>
+
+      <button type="button" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+        <i class="fa" x-ng-class="{'fa-wrench' : !editMode, 'fa-save' : editMode}"></i>
+      </button>
+
+      <button type="button" ng-if="editMode" title="undo changes" ng-click="cancelEditMode()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+         <i class="fa fa-undo"></i>
+      </button>
+
+      <button type="button" ng-if="editMode && model.removable" title="Remove Dashboard" ng-click="removeDashboard()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+        <i class="fa fa-trash"></i>
+      </button>
+      <span ng-if="editMode">&nbsp;&nbsp;&nbsp;</span>
+      <button type="button" ng-if="editMode" title="import configuration" ng-click="importDashboardDialog()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+        <i class="fa fa-arrow-circle-up"></i>
+      </button>
+
+      <button type="button" ng-if="editMode" title="export configuration" ng-click="exportDashboard()" class="btn btn-bbva btn-bbva-small btn-bbva-yellow">
+        <i class="fa fa-arrow-circle-down"></i>
+      </button>
+
+    </span>
+  </h1>
+
+  <div class="dashboard" x-ng-class="{'edit' : editMode}">
+    <bbva-dashboard-row row="row" ng-repeat="row in model.rows" edit-mode="{{editMode}}" sortable-options="sortableOptions"></bbva-dashboard-row>
+  </div>
+
+</div>

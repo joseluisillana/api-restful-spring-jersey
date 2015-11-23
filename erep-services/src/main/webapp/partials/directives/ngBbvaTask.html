@@ -1,0 +1,80 @@
+<div id="taskInfoElement" class="fadeAnim" ng-show="task!=null">
+    <h1 class="bbva-widget-section-title ng-binding">
+        <i class="fa fa-code-fork fah3 glyphicon-big"></i>
+        ANS Tarea: {{task.name}}
+        <span class="pull-right">
+            <a href="" title="collapsing widget" ng-show="!isTaskInfoCollapsed" ng-click="isTaskInfoCollapsed = !isTaskInfoCollapsed" class="">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+            <a href="" title="expand widget" ng-show="isTaskInfoCollapsed" ng-click="isTaskInfoCollapsed = !isTaskInfoCollapsed" class="ng-hide">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </span>
+    </h1>
+    <hr>
+    <div collapse="isTaskInfoCollapsed">
+
+        <div class="col-md-2">
+        </div>
+
+        <!-- TASKS ANS KO -->
+        <div class="col-md-4">
+            <div class="blueBox red">
+                <div class="blueBoxIco">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle-o fa-stack-2x"></i>
+                          <i class="fa fa-thumbs-down fa-stack-1x"></i>
+                        </span>
+                </div>
+                <div class="blueBoxValue">{{ansOKTaskCounter}}</div>
+                <div class="blueBoxLbl">Tareas ANS<br>Incumplido</div>
+                <div class="fadeInOutLoop blueBoxVariation" ng-show="ansOKTaskVariation!=null">
+                    <i class="fa {{ansKOClaimsVariation && ansKOClaimsVariation > 0? 'fa-arrow-circle-up' : 'fa-arrow-circle-down'}}"></i>
+                    {{ansOKTaskVariation}}%<br>
+                </div>
+            </div>
+        </div>
+
+        <!-- TASKS ANS OK -->
+        <div class="col-md-4">
+            <div class="blueBox green">
+                <div class="blueBoxIco">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle-o fa-stack-2x"></i>
+                          <i class="fa fa-thumbs-up fa-stack-1x"></i>
+                        </span>
+                </div>
+                <div class="blueBoxValue">{{ansKOTaskCounter}}</div>
+                <div class="blueBoxLbl">Tareas ANS<br>Cumplido</div>
+                <div class="fadeInOutLoop blueBoxVariation" ng-show="ansKOTaskVariation!=null">
+                    <i class="fa {{ansOKClaimsVariation && ansOKClaimsVariation > 0? 'fa-arrow-circle-up' : 'fa-arrow-circle-down'}}"></i>
+                    {{ansKOTaskVariation}}%
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+        </div>
+
+        <!-- TASKS TIME LEVELS -->
+        <div class="col-md-6">
+            <div class="blueBox">
+                <div class="blueBoxLbl"><i class="fa fa-bar-chart"></i>Niveles ANS</div>
+                <div id="{{tasksTimeLevelsChartElement}}">
+                    <svg id="{{tasksTimeLevelsChartSGV}}" style="height:{{tasksTimeLevelsChartHeight}}px;"></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- TASKS ANS EVOLUTION -->
+        <div class="col-md-6">
+            <div class="blueBox">
+                <div class="blueBoxLbl"><i class="fa fa-bar-chart"></i>Evolución ANS Tarea</div>
+                <div id="{{tasksAnsEvolutionChartElement}}">
+                    <svg id="{{tasksAnsEvolutionChartSGV}}" style="height:{{tasksAnsEvolutionChartHeight}}px;"></svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
